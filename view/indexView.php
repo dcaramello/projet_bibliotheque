@@ -1,6 +1,6 @@
 
 
-<p class="mt-3 d-flex justify-content-center">Catalogue</p>
+<p class="mt-3 d-flex justify-content-center gotisch">Catalogue</p>
 
 
 <!-- affiche tous les livres -->
@@ -11,8 +11,8 @@
       <th scope="col">Titre</th>
       <th scope="col">Auteur</th>
       <th scope="col">Categorie</th>
-      <th scope="col">Status</th>
-      <th scope="col">Voir</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Etat</th>
     </tr>
   </thead>
   <tbody>
@@ -21,8 +21,8 @@
       <?php echo "<td>" . $book->getTitle() . "</td>"; ?></td>
       <?php echo "<td>" . $book->getAuthor() . "</td>"; ?></td>
       <?php echo "<td>" . $book->getCategory() . "</td>"; ?></td>
-      <td>Status</td>
-      <td><button type="button" class="btn btn-outline-dark">Voir</button></td>
+      <td>X</td>
+      <td><a href="book.php?id=<?php echo $book->getId()?>><button type="button" class="btn btn-outline-dark" name="id">Voir</button></a></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

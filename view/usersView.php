@@ -1,4 +1,4 @@
-<p class="mt-3 d-flex justify-content-center">Vos utilisateurs</p>
+<p class="mt-3 d-flex justify-content-center gotisch">Vos utilisateurs</p>
 
 <table class="table table-striped mt-5 mb-5 container">
   <thead>

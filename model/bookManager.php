@@ -11,7 +11,7 @@ class bookManager{
   // Récupère tous les livres
   public function getBooks():?array{
     $query = $this->db->query(
-      "SELECT title, author, category
+      "SELECT id, title, author, category
       FROM book" 
     );
     
@@ -24,8 +24,22 @@ class bookManager{
   }
 
   // Récupère un livre
-  public function getBook() {
+  public function getBook($id) {
+    $query = $this->db->prepare(
+      "SELECT id, title, author, synopsis, release_date, category
+      FROM book
+      WHERE id = :id"
+    );
 
+    $query->execute([
+      "id" => $id
+    ]);
+
+    $books = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach($books as $key => $book){
+      $books[$key] = new Book($book);
+    }
+    return $books;
   }
 
   // Ajoute un nouveau livre

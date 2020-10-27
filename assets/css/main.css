@@ -95,7 +95,26 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-   
+
+@font-face {
+    font-family: "cloisterBlack";
+    src:url("CloisterBlack.ttf");
+}
+
+.cloisterBlack {
+    font-family: "cloisterBlack", Arial, Helvetica, sans-serif;
+}
+
+.jumbotron{
+    background-image: url(../img/bookheader.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+footer{
+    background-color: grey;
+}
+  
 
 
 /* ##################################################################### */
