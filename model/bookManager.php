@@ -29,8 +29,20 @@ class bookManager{
   }
 
   // Ajoute un nouveau livre
-  public function addBook() {
+  public function addBook(Book $book) {
+    $query = $this->db->prepare(
+      "INSERT INTO book(title, author, synopsis, release_date, category)
+      VALUES(:title, :author, :synopsis, :release_date, :category)"
+    );
 
+    $result = $query->execute([
+      "title" => $book->getTitle(),
+      "author" => $book->getAuthor(),
+      "synopsis" => $book->getSynopsis(),
+      "release_date" => $book->getRelease_date(),
+      "category" => $book->getCategory()
+    ]);
+    return $result;
   }
 
   // Met à jour le statut d'un livre emprunté
