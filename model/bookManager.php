@@ -1,10 +1,26 @@
 <?php
 
-class bookManager {
+class bookManager{
+
+  private $db;
+
+  public function __construct(){
+    $this->db = new PDO('mysql:host=localhost;dbname=bibliotheque_PHP', 'bibliothequePHP', 'root');
+  }
 
   // Récupère tous les livres
-  public function getBooks() {
+  public function getBooks():?array{
+    $query = $this->db->query(
+      "SELECT title, author, category
+      FROM book" 
+    );
+    
+    $books = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach($books as $key => $book){
+      $books[$key] = new Book($book);
+    }
 
+    return $books;
   }
 
   // Récupère un livre
