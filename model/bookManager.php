@@ -64,4 +64,23 @@ class bookManager{
 
   }
 
+  public function getBookAndUser($id){
+    $query = $this->db->prepare(
+      "SELECT u.id, u.lastname, u.firstname, b.user_id, b.id, u.sex
+      FROM user AS u
+      INNER JOIN book AS b
+      ON b.user_id = u.id
+      WHERE b.id = :id"
+    );
+    $query->execute([
+      "id" => $id
+    ]);
+
+    $users = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach($users as $key => $user){
+      $users[$key] = new User($user);
+    }
+    return $users;
+  }
+
 }

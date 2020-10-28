@@ -21,7 +21,7 @@
             <?php echo "<td>" . $user->getCity() . "</td>"; ?>
             <?php echo "<td>" . $user->getCity_code() . "</td>"; ?>
             <?php echo "<td>" . $user->getSex() . "</td>"; ?>
-            <td><button type="button" class="btn btn-outline-dark">Voir</button></td>
+            <td><a href="user.php?id=<?php echo $user->getId()?>><button type="button" class="btn btn-outline-dark" name="id">Voir</button></a></td>
     <?php endforeach; ?>
         </tr>    
 </tbody>

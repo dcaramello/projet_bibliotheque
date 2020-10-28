@@ -1,4 +1,4 @@
-<form class="container" method="POST">
+<form class="container animate__animated animate__zoomInDown" method="POST">
   <div class="form-group">
     <label for="exampleFormControlInput1">Titre</label>
     <input name="title" type="text" class="form-control" id="exampleFormControlInput1">
@@ -26,5 +26,7 @@
   </div>
   <div class="form-group">
     <button name="ajouter" type="submit" class="btn btn-outline-dark">Ajouter</button>
+    <a href="users.php" class="btn btn-primary">Retour</a>
   </div>
+  
 </form>
