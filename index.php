@@ -8,5 +8,6 @@ $bookManager = new BookManager();
 
 $books = $bookManager->getBooks();
 
+
 require "view/indexView.php";
 require "view/template/footer.php";

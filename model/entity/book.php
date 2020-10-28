@@ -1,13 +1,13 @@
 <?php
 // Classe représetant les livres stockés en base de données
 class Book {
-    protected int $id;
-    protected string $title;
-    protected string $author;
-    protected string $synopsis;
-    protected string $release_date;
-    protected string $category;
-    protected int $user_id;
+    protected ?int $id;
+    protected ?string $title;
+    protected ?string $author;
+    protected ?string $synopsis;
+    protected ?string $release_date;
+    protected ?string $category;
+    protected ?int $user_id;
 
     public CONST CATEGORY = [
         "manga",
@@ -63,12 +63,12 @@ class Book {
         return $this->category;
     }
 
-    public function setUser_id(int $user_id):self{
-        $this->$user_id = $user_id;
+    public function setUser_id(int $user_id = NULL):self{
+        $this->user_id = $user_id;
         return $this;
     }
     public function getUser_id(){
-        return $this;
+        return $this->user_id;
     }
 
     private function hydrate(array $data) {

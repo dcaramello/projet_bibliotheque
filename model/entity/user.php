@@ -64,7 +64,9 @@ class User {
     }
 
     public function setSex(string $sex):self{
-        $this->sex = $sex;
+        if (in_array($sex, self::SEX)) {
+            $this->sex = $sex;
+          }
         return $this;
     }
     public function getSex(){

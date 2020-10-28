@@ -9,7 +9,7 @@
             <p class="card-text">Ville : <?php echo $user->getCity() . " " . $user->getCity_code(); ?></p>
             <p class="card-text">Sexe :<?php echo $user->getSex(); ?></p>
             <p class="card-text">Numéro :<?php echo $user->getId(); ?></p>
-            <a href="users.php" class="btn btn-primary">Retour</a>
+            <a href="users.php" class="btn btn-outline-dark">Retour</a>
         </div>
 </div>
 <?php

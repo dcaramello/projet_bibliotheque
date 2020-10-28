@@ -8,9 +8,20 @@ require "model/entity/user.php";
 require "model/entity/book.php";
 
 $bookManager = new BookManager();
+$userManager = new userManager();
 
 $books = $bookManager->getBook($_GET["id"]);
-$users = $bookManager->getBookAndUser($_GET["id"]);
+$users = $bookManager->getInfoUser($_GET["id"]);
+
+$usersObjet = $userManager->getUsers();
+
+
+
+if(isset($_POST["emprunter"])){
+    $userId = new User($_POST);
+    $updateBook = $bookManager->updateBookStatus($userId);
+    header("location: book.php");
+}
 
 require "view/bookView.php";
 require "view/template/footer.php";

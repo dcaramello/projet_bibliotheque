@@ -9,5 +9,6 @@ $userManager = new UserManager();
 
 $users = $userManager->getUsers();
 
+
 require "view/usersView.php";
 require "view/template/footer.php";

@@ -11,7 +11,7 @@ class bookManager{
   // Récupère tous les livres
   public function getBooks():?array{
     $query = $this->db->query(
-      "SELECT id, title, author, category
+      "SELECT id, title, author, category, user_id
       FROM book" 
     );
     
@@ -26,7 +26,7 @@ class bookManager{
   // Récupère un livre
   public function getBook($id) {
     $query = $this->db->prepare(
-      "SELECT id, title, author, synopsis, release_date, category
+      "SELECT id, title, author, synopsis, release_date, category, user_id
       FROM book
       WHERE id = :id"
     );
@@ -60,11 +60,21 @@ class bookManager{
   }
 
   // Met à jour le statut d'un livre emprunté
-  public function updateBookStatus() {
+  public function updateBookStatus(User $user):bool {
+    $query = $this->db->prepare(
+      "UPDATE book
+      SET user_id = :user_id
+      WHERE id = :id"
+    );
 
+    $result = $query->execute([
+      "user_id" => $user->getId(),
+      "id" => $_GET["id"]
+    ]);
+    return $result;
   }
 
-  public function getBookAndUser($id){
+  public function getInfoUser($id){
     $query = $this->db->prepare(
       "SELECT u.id, u.lastname, u.firstname, b.user_id, b.id, u.sex
       FROM user AS u

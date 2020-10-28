@@ -13,8 +13,8 @@
 <header>
     <div class="jumbotron jumbotron-fluid m-0">
     <div class="container">
-        <h1 class="display-4 text-white cloisterBlack d-flex justify-content-center">Bibliothèque</h1>
-        <p class="lead text-white d-flex justify-content-center">Tous vos livres préférés !</p>
+        <h1 class="text-white cloisterBlack d-flex justify-content-center" style="font-size: 12vh">Bibliothèque</h1>
+        <p class="lead text-white d-flex justify-content-center" style="font-size: 3vh">Tous vos livres préférés !</p>
     </div>
     </div>
 </header>

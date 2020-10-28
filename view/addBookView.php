@@ -1,3 +1,4 @@
+<!-- un formulaire qui ajoute un livre en BDD -->
 <form class="container animate__animated animate__zoomInDown" method="POST">
   <div class="form-group">
     <label for="exampleFormControlInput1">Titre</label>
@@ -28,5 +29,4 @@
     <button name="ajouter" type="submit" class="btn btn-outline-dark">Ajouter</button>
     <a href="users.php" class="btn btn-primary">Retour</a>
   </div>
-  
 </form>
