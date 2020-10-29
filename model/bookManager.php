@@ -59,8 +59,8 @@ class bookManager{
     return $result;
   }
 
-  // Met à jour le statut d'un livre emprunté
-  public function updateBookStatus(User $user):bool {
+  // Emprunter un livre
+  public function borrowBook(User $user):bool {
     $query = $this->db->prepare(
       "UPDATE book
       SET user_id = :user_id
@@ -74,6 +74,7 @@ class bookManager{
     return $result;
   }
 
+  // affiche les infos de l'utilisateur a coté du livre emprunté
   public function getInfoUser($id){
     $query = $this->db->prepare(
       "SELECT u.id, u.lastname, u.firstname, b.user_id, b.id, u.sex
@@ -91,6 +92,20 @@ class bookManager{
       $users[$key] = new User($user);
     }
     return $users;
+  }
+
+  // rendre un livre
+  public function returnBook():bool{
+    $query = $this->db->prepare(
+      "UPDATE book
+      SET user_id = NULL
+      WHERE id = :id"
+    );
+
+    $result = $query->execute([
+      "id" => $_GET["id"]
+    ]);
+    return $result;
   }
 
 }

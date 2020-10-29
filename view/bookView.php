@@ -62,7 +62,9 @@ else:
                 <h5 class="card-title">Emprunté par : </h5>
                 <h5 class="card-title">Numéro : <?php echo $user->getId(); ?></h5>
                 <p class="card-text">Nom : <?php echo $user->getFirstname() . " " . $user->getLastname(); ?></p>
-                <button type="button" class="btn btn-outline-dark">Rendre</button>
+                <form action="" method="POST">
+                <button name="rendre" type="submit" class="btn btn-outline-dark">Rendre</button>
+                </form>
             </div>
         </div>
 <?php

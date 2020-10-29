@@ -19,9 +19,16 @@ $usersObjet = $userManager->getUsers();
 
 if(isset($_POST["emprunter"])){
     $userId = new User($_POST);
-    $updateBook = $bookManager->updateBookStatus($userId);
-    header("location: book.php");
+    $updateBook = $bookManager->borrowBook($userId);
+    header("location: index.php");
 }
+
+if(isset($_POST["rendre"])){
+    $updateBook = $bookManager->returnBook();
+    header("location: index.php");
+}
+
+
 
 require "view/bookView.php";
 require "view/template/footer.php";
