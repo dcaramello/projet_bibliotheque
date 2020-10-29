@@ -108,4 +108,16 @@ class bookManager{
     return $result;
   }
 
+  public function deleteBook(){
+    $query = $this->db->prepare(
+      "DELETE FROM book
+      WHERE id = :id"
+    );
+
+    $result = $query->execute([
+      "id" => $_GET["id"]
+    ]);
+    return $result;
+  }
+
 }

@@ -16,18 +16,16 @@ $users = $bookManager->getInfoUser($_GET["id"]);
 $usersObjet = $userManager->getUsers();
 
 
-
 if(isset($_POST["emprunter"])){
     $userId = new User($_POST);
-    $updateBook = $bookManager->borrowBook($userId);
+    $borrowBook = $bookManager->borrowBook($userId);
     header("location: index.php");
 }
 
 if(isset($_POST["rendre"])){
-    $updateBook = $bookManager->returnBook();
+    $returnBook = $bookManager->returnBook();
     header("location: index.php");
 }
-
 
 
 require "view/bookView.php";

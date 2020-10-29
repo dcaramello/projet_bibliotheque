@@ -24,16 +24,17 @@ if($book->getUser_id() === NULL):
 <div class="mt-3 col-4 mb-2 row justify-content-end animate__animated animate__bounceInRight">
     <form class="card-body" method="POST">
     <div class="form-group">
+        <p>Saisir le numéro utilisateur pour emprunter :</p>
         <label for="exampleFormControlInput1">Numéro : </label>
         <input name="id" type="number" class="form-control" id="exampleFormControlInput1">
     </div>
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Nom :</label>
+        <label for="exampleFormControlSelect1">Rechercher :</label>
         <select name="lastname" class="form-control" id="exampleFormControlSelect1">
             <?php 
             foreach ($usersObjet as $userObjet): 
             ?>
-            <option><?php echo $userObjet->getFirstname() . " " . " " . $userObjet->getLastname() . " : " . $userObjet->getId(); ?></option>
+            <option><?php echo "Nom : " . $userObjet->getFirstname() . " " . " " . $userObjet->getLastname() . " / Numéro : " . $userObjet->getId(); ?></option>
             <?php 
             endforeach; 
             ?>

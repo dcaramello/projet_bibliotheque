@@ -111,6 +111,24 @@ textarea {
     background-size: cover;
 }
 
+#blocLayer {
+    position: fixed;
+    top:45%;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    z-index: 2000;
+  }
+
+.layer {
+    background-color: #dee2e6;
+    border: 2px solid black;
+    border-radius: 5px;
+    opacity: 1;
+    width: 20%;
+    margin: auto;
+  }
+
 footer{
     background-color: grey;
 }
@@ -147,15 +165,6 @@ footer{
 @media (min-width: 1200px) {
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
