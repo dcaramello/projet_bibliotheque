@@ -2,7 +2,7 @@
 
 <div class="d-flex justify-content-center">
 
-<form action="index.php" method="POST" class="mt-5 mb-5 ml-5">
+<form action="index.php" method="POST" class="mt-5 ml-5">
 <div class="card" style="width: 10rem;">
   <div class="card-header">
     Trier par :

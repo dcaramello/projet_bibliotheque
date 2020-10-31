@@ -1,7 +1,7 @@
 <!-- un formulaire qui ajoute un livre en BDD -->
 <h2 class="mt-3 d-flex justify-content-center cloisterBlack" style="font-size: xx-large;">Ajouter un nouveau livre</h2>
 
-<form class="container animate__animated animate__zoomInDown" method="POST">
+<form class="container animate__animated animate__zoomInDown pb-0" method="POST">
   <div class="form-group">
     <label>Titre</label>
     <input name="title" type="text" class="form-control">
