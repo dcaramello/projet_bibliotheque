@@ -72,21 +72,28 @@ class userManager {
     return $countUsers;
   }
 
-  // Ajoute un nouvel utilisateur
+  // Ajoute un nouvel utilisateur avec transaction sql
   public function addUser(User $user) {
-    $query = $this->db->prepare(
-      "INSERT INTO user(lastname, firstname, email, city, city_code, sex)
-      VALUES(:lastname, :firstname, :email, :city, :city_code, :sex)"
-    );
+    try{
+      $this->db->beginTransaction();
+        $query = $this->db->prepare(
+        "INSERT INTO user(lastname, firstname, email, city, city_code, sex)
+        VALUES(:lastname, :firstname, :email, :city, :city_code, :sex)"
+      );
 
-    $result = $query->execute([
-      "lastname" => $user->getLastname(),
-      "firstname" => $user->getFirstname(),
-      "email" => $user->getEmail(),
-      "city" => $user->getCity(),
-      "city_code" => $user->getCity_code(),
-      "sex" => $user->getSex()
-    ]);
-    return $result;
+      $result = $query->execute([
+        "lastname" => htmlspecialchars($user->getLastname()),
+        "firstname" => htmlspecialchars($user->getFirstname()),
+        "email" => htmlspecialchars($user->getEmail()),
+        "city" => htmlspecialchars($user->getCity()),
+        "city_code" => htmlspecialchars($user->getCity_code()),
+        "sex" => htmlspecialchars($user->getSex())
+      ]);
+      $this->db->commit();  
+      return $result;
+    }
+    catch (\Exception $e){
+      $this->db->rollBack();
+      }
   }
 }

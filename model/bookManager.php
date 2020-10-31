@@ -42,36 +42,52 @@ class bookManager{
     return $books;
   }
 
-  // Ajoute un nouveau livre
+  // Ajoute un nouveau livre avec transaction sql
   public function addBook(Book $book) {
-    $query = $this->db->prepare(
-      "INSERT INTO book(title, author, synopsis, release_date, category)
-      VALUES(:title, :author, :synopsis, :release_date, :category)"
-    );
+    try{
+      $this->db->beginTransaction();
+      $query = $this->db->prepare(
+        "INSERT INTO book(title, author, synopsis, release_date, category)
+        VALUES(:title, :author, :synopsis, :release_date, :category)"
+      );
 
-    $result = $query->execute([
-      "title" => $book->getTitle(),
-      "author" => $book->getAuthor(),
-      "synopsis" => $book->getSynopsis(),
-      "release_date" => $book->getRelease_date(),
-      "category" => $book->getCategory()
-    ]);
-    return $result;
+      $result = $query->execute([
+        "title" => htmlspecialchars($book->getTitle()),
+        "author" => htmlspecialchars($book->getAuthor()),
+        "synopsis" => htmlspecialchars($book->getSynopsis()),
+        "release_date" => htmlspecialchars($book->getRelease_date()),
+        "category" => htmlspecialchars($book->getCategory())
+      ]);
+
+      $this->db->commit();
+      return $result;
+    }
+    catch (\Exception $e){
+    $this->db->rollBack();
+    }
   }
 
-  // Emprunter un livre
+  // Emprunter un livre avec transaction sql
   public function borrowBook(User $user):bool {
-    $query = $this->db->prepare(
-      "UPDATE book
-      SET user_id = :user_id
-      WHERE id = :id"
-    );
+    try{
+      $this->db->beginTransaction();
+      $query = $this->db->prepare(
+        "UPDATE book
+        SET user_id = :user_id
+        WHERE id = :id"
+      );
 
-    $result = $query->execute([
-      "user_id" => $user->getId(),
-      "id" => $_GET["id"]
-    ]);
-    return $result;
+      $result = $query->execute([
+        "user_id" => $user->getId(),
+        "id" => $_GET["id"]
+      ]);
+
+      $this->db->commit();
+      return $result;
+    }
+    catch (\Exception $e){
+      $this->db->rollBack();
+    }
   }
 
   // affiche les infos de l'utilisateur a coté du livre emprunté
@@ -94,30 +110,47 @@ class bookManager{
     return $users;
   }
 
-  // rendre un livre
+  // rendre un livre avec transaction sql
   public function returnBook():bool{
-    $query = $this->db->prepare(
-      "UPDATE book
-      SET user_id = NULL
-      WHERE id = :id"
-    );
+    try{
+      $this->db->beginTransaction();
+        $query = $this->db->prepare(
+        "UPDATE book
+        SET user_id = NULL
+        WHERE id = :id"
+      );
 
-    $result = $query->execute([
-      "id" => $_GET["id"]
-    ]);
-    return $result;
+      $result = $query->execute([
+        "id" => $_GET["id"]
+      ]);
+
+      $this->db->commit();
+      return $result;
+    }
+    catch (\Exception $e){
+      $this->db->rollBack();
+    }
   }
 
+  // supprime un livre avec transaction sql
   public function deleteBook(){
-    $query = $this->db->prepare(
-      "DELETE FROM book
-      WHERE id = :id"
-    );
+    try{
+      $this->db->beginTransaction();
+      $query = $this->db->prepare(
+        "DELETE FROM book
+        WHERE id = :id"
+      );
 
-    $result = $query->execute([
-      "id" => $_GET["id"]
-    ]);
-    return $result;
+      $result = $query->execute([
+        "id" => $_GET["id"]
+      ]);
+
+      $this->db->commit();
+      return $result;
+    }
+    catch (\Exception $e){
+      $this->db->rollBack();
+    }
   }
 
   // tri les livres par categorie
