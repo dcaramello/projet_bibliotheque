@@ -25,12 +25,12 @@ if($book->getUser_id() === NULL):
     <form class="card-body" method="POST">
     <div class="form-group">
         <p>Saisir le numéro utilisateur pour emprunter :</p>
-        <label for="exampleFormControlInput1">Numéro : </label>
-        <input name="id" type="number" class="form-control" id="exampleFormControlInput1">
+        <label>Numéro : </label>
+        <input name="id" type="number" class="form-control" required="required">
     </div>
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Rechercher :</label>
-        <select name="lastname" class="form-control" id="exampleFormControlSelect1">
+        <label>Rechercher :</label>
+        <select name="lastname" class="form-control" >
             <?php 
             foreach ($usersObjet as $userObjet): 
             ?>
@@ -54,14 +54,14 @@ else:
         <div class="card" style="width: 18rem; height: 30rem;">
         <div class="card-body">
             <?php if($user->getSex() === "H"): ?>
-                <img src="assets/img/homme.png" class="card-img-top" alt="neutre">
+                <img src="assets/img/homme.png" class="card-img-top" alt="homme">
             <?php else: ?>
-                <img src="assets/img/femme.png" class="card-img-top" alt="neutre">
+                <img src="assets/img/femme.png" class="card-img-top" alt="femme">
             <?php endif; ?>   
         </div> 
             <div class="card-body">   
                 <h5 class="card-title">Emprunté par : </h5>
-                <h5 class="card-title">Numéro : <?php echo $user->getId(); ?></h5>
+                <h5 class="card-title">Numéro : <?php echo $book->getUser_id(); ?></h5>
                 <p class="card-text">Nom : <?php echo $user->getFirstname() . " " . $user->getLastname(); ?></p>
                 <form action="" method="POST">
                 <button name="rendre" type="submit" class="btn btn-outline-dark">Rendre</button>

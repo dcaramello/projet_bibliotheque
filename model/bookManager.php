@@ -79,9 +79,9 @@ class bookManager{
     $query = $this->db->prepare(
       "SELECT u.id, u.lastname, u.firstname, b.user_id, b.id, u.sex
       FROM user AS u
-      INNER JOIN book AS b
-      ON b.user_id = u.id
-      WHERE b.id = :id"
+      RIGHT JOIN book AS b
+      ON u.id = b.user_id
+      WHERE b.id = :id AND u.id = b.user_id"
     );
     $query->execute([
       "id" => $id
@@ -118,6 +118,26 @@ class bookManager{
       "id" => $_GET["id"]
     ]);
     return $result;
+  }
+
+  // tri les livres par categorie
+  public function sortBooksByCategory(){
+    $query = $this->db->prepare(
+      "SELECT id, title, author, category, user_id
+      FROM book
+      WHERE category = :category" 
+    );
+
+    $query->execute([
+      "category" => $_POST["category"]
+    ]);
+
+    $books = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach($books as $key => $book){
+      $books[$key] = new Book($book);
+    }
+
+    return $books;
   }
 
 }

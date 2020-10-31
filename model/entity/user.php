@@ -1,13 +1,13 @@
 <?php
 // Classe représetant les utilisateurs stockés en base de données
 class User {
-    protected int $id;
-    protected string $lastname;
-    protected string $firstname;
-    protected string $email;
-    protected string $city;
-    protected string $city_code;
-    protected string $sex;
+    protected ?int $id;
+    protected ?string $lastname;
+    protected ?string $firstname;
+    protected ?string $email;
+    protected ?string $city;
+    protected ?string $city_code;
+    protected ?string $sex;
     
     public CONST SEX = [
         "H",
@@ -56,7 +56,7 @@ class User {
     }
 
     public function setCity_code(string $city_code):self{
-        $this->city_code = $city_code;
+        $this->city_code = htmlspecialchars($city_code);
         return $this;
     }
     public function getCity_code(){

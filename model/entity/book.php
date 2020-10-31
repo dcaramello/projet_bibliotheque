@@ -15,8 +15,10 @@ class Book {
         "comics"
     ];
 
-    public function setId(int $id):self{
-        $this->id = $id;
+    public function setId(int $id = NULL):self{
+        if($id){
+            $this->id = $id;
+        }
         return $this;
     }
     public function getId(){

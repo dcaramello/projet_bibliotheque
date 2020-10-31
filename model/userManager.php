@@ -40,8 +40,53 @@ class userManager {
     return $users;
   }
 
-  // Récupère un utilisateur par son code personnel
-  public function getUser() {
+  // affiche les livres empruntés par l'utilisateur
+  public function getBookBorrow($id){
+    $query = $this->db->prepare(
+      "SELECT b.user_id, u.id, b.title
+      FROM book AS b
+      LEFT JOIN user AS u
+      ON b.user_id = u.id
+      WHERE u.id = :id"
+    );
+    $query->execute([
+      "id" => $id
+    ]);
 
+    $books = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach($books as $key => $book){
+      $books[$key] = new Book($book);
+    }
+    return $books;
+  }
+
+  // compte le nombre d'utilisateurs enregistré dans la table
+  public function getCountUsers(){
+    $query = $this->db->query(
+      "SELECT COUNT(*)
+      FROM user" 
+    );
+    
+    $countUsers = $query->fetch(PDO::FETCH_NUM);
+    
+    return $countUsers;
+  }
+
+  // Ajoute un nouvel utilisateur
+  public function addUser(User $user) {
+    $query = $this->db->prepare(
+      "INSERT INTO user(lastname, firstname, email, city, city_code, sex)
+      VALUES(:lastname, :firstname, :email, :city, :city_code, :sex)"
+    );
+
+    $result = $query->execute([
+      "lastname" => $user->getLastname(),
+      "firstname" => $user->getFirstname(),
+      "email" => $user->getEmail(),
+      "city" => $user->getCity(),
+      "city_code" => $user->getCity_code(),
+      "sex" => $user->getSex()
+    ]);
+    return $result;
   }
 }
