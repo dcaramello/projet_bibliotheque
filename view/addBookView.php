@@ -1,16 +1,18 @@
 <!-- un formulaire qui ajoute un livre en BDD -->
+<h2 class="mt-3 d-flex justify-content-center cloisterBlack" style="font-size: xx-large;">Ajouter un nouveau livre</h2>
+
 <form class="container animate__animated animate__zoomInDown" method="POST">
   <div class="form-group">
-    <label for="exampleFormControlInput1">Titre</label>
-    <input name="title" type="text" class="form-control" id="exampleFormControlInput1">
+    <label>Titre</label>
+    <input name="title" type="text" class="form-control">
   </div>
   <div class="form-group">
-    <label for="exampleFormControlInput1">Auteur</label>
-    <input name="author" type="text" class="form-control" id="exampleFormControlInput1">
+    <label>Auteur</label>
+    <input name="author" type="text" class="form-control">
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Categorie</label>
-    <select name="category" class="form-control" id="exampleFormControlSelect1">
+    <label>Categorie</label>
+    <select name="category" class="form-control">
       <option>manga</option>
       <option>comics</option>
       <option>roman</option>
@@ -18,15 +20,15 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlInput1">Date de parution</label>
-    <input name="release_date" type="date" class="form-control" id="exampleFormControlInput1">
+    <label>Date de parution</label>
+    <input name="release_date" type="date" class="form-control">
   </div>
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">Synopsis</label>
-    <textarea name="synopsis" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <label>Synopsis</label>
+    <textarea name="synopsis" class="form-control" rows="3"></textarea>
   </div>
   <div class="form-group">
     <button name="ajouter" type="submit" class="btn btn-outline-dark">Ajouter</button>
-    <a href="users.php" class="btn btn-primary">Retour</a>
+    <a href="index.php" class="btn btn-primary">Retour</a>
   </div>
 </form>

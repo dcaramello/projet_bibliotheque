@@ -9,6 +9,10 @@
             <p class="card-text">Ville : <?php echo $user->getCity() . " " . $user->getCity_code(); ?></p>
             <p class="card-text">Sexe :<?php echo $user->getSex(); ?></p>
             <p class="card-text">Numéro :<?php echo $user->getId(); ?></p>
+            <p class="card-text">Emprunt en cours :</p>
+            <?php foreach ($books as $book): ?>
+                <p class="card-text">Titre : <?php echo $book->getTitle(); ?></p>
+            <?php endforeach; ?>
             <a href="users.php" class="btn btn-outline-dark">Retour</a>
         </div>
 </div>
